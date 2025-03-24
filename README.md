@@ -64,14 +64,14 @@
 
 Bash-скрипт для проверки доступности порта веб-сервера nginx и наличие файла index.html в root-директории данного веб-сервера.  
 ![check_nginx.sh:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/check_nginx.sh)  
-
+```
 #!/bin/bash  
 if [[ $(netstat -ant | grep LISTEN | grep :80) ]] && [[ -f /var/www/html/index.nginx-debian.html ]]; then  
   exit 0  
 else  
   sudo systemctl stop keepalived  
 fi  
-
+```
 Настройки Keepalived для запуска скрипта каждые 3 секунды и переноса виртуального IP на другой сервер, если bash-скрипт завершится с кодом, отличным от нуля.  
 ![Для MASTER:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_MASTER.conf)  
 ```  

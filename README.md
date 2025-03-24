@@ -62,8 +62,9 @@
 Данный хост будет BACKUP:
 ![](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/10-1-2-1.PNG)
 
-Bash-скрипт для проверки доступности порта веб-сервера nginx и наличие файла index.html в root-директории данного веб-сервера.
+Bash-скрипт для проверки доступности порта веб-сервера nginx и наличие файла index.html в root-директории данного веб-сервера.  
 ![check_nginx.sh:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/check_nginx.sh)  
+
 #!/bin/bash  
 if [[ $(netstat -ant | grep LISTEN | grep :80) ]] && [[ -f /var/www/html/index.nginx-debian.html ]]; then  
   exit 0  
@@ -71,8 +72,9 @@ else
   sudo systemctl stop keepalived  
 fi  
 
-Настройки Keepalived для запуска скрипта каждые 3 секунды и переноса виртуального IP на другой сервер, если bash-скрипт завершится с кодом, отличным от нуля.
+Настройки Keepalived для запуска скрипта каждые 3 секунды и переноса виртуального IP на другой сервер, если bash-скрипт завершится с кодом, отличным от нуля.  
 ![Для MASTER:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_MASTER.conf)  
+  
 vrrp_script check_nginx {  
         script "/etc/keepalived/check_nginx.sh"  
 	interval 3  
@@ -91,8 +93,9 @@ vrrp_instance VI_1 {
               check_nginx
         }
 }
-
+  
 ![Для BACKUP:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_BACKUP.conf)  
+  
 vrrp_instance VI_1 {
         state BACKUP
         interface enp0s3
@@ -103,7 +106,7 @@ vrrp_instance VI_1 {
               192.168.1.250/24
         }
 }
-
+  
 ### Демонстрация переезда плавающего ip на другой сервер в случае недоступности порта.
 
 Подключимся на виртуальный ip-адрес 192.168.1.250.

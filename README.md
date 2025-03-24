@@ -43,7 +43,7 @@
 Тестирование отказа Router2 на интерфейсе Gi0/0, теперь запрос отработан успешно:
 ![](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/10-1-1-9.PNG)
 
-![Файл с настройками сети.](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/hsrp_advanced_Eskin.pkt)
+[Файл с настройками сети.](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/hsrp_advanced_Eskin.pkt)
 
 ## Задание 2
 * Запустите две виртуальные машины Linux, установите и настройте сервис Keepalived как в лекции, используя пример конфигурационного файла.
@@ -63,7 +63,7 @@
 ![](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/10-1-2-1.PNG)
 
 Bash-скрипт для проверки доступности порта веб-сервера nginx и наличие файла index.html в root-директории данного веб-сервера.  
-![check_nginx.sh:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/check_nginx.sh)  
+[check_nginx.sh:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/check_nginx.sh)  
 ```
 #!/bin/bash  
 if [[ $(netstat -ant | grep LISTEN | grep :80) ]] && [[ -f /var/www/html/index.nginx-debian.html ]]; then  
@@ -73,7 +73,7 @@ else
 fi  
 ```
 Настройки Keepalived для запуска скрипта каждые 3 секунды и переноса виртуального IP на другой сервер, если bash-скрипт завершится с кодом, отличным от нуля.  
-![Для MASTER:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_MASTER.conf)  
+[Для MASTER:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_MASTER.conf)  
 ```  
 vrrp_script check_nginx {  
         script "/etc/keepalived/check_nginx.sh"  
@@ -95,7 +95,7 @@ vrrp_instance VI_1 {
 }
 ```
   
-![Для BACKUP:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_BACKUP.conf)  
+[Для BACKUP:](https://github.com/eskin-igor/netology_10-1/blob/main/10-1/keepalived_for_BACKUP.conf)  
 ```  
 vrrp_instance VI_1 {
         state BACKUP
